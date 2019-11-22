@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -100,7 +100,7 @@
           <a href="#">
             <img class="img-fluid" src=" {{post.bodyimage.url}} " alt="">
           </a>
-          <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+          <span class="caption text-muted"> {{post.imagecaption }} </span>
 
           <p>{{post.text6}}</p>
 
@@ -122,8 +122,8 @@
 
           
           <p>Placeholder text by
-            <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
-            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>
+            <a href="#">{{post.author}} </a>. Photographs by
+            <a href="#">{{post.author}}</a>.</p>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@
               </a>
             </li>
           </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+          <p class="copyright text-muted">Copyright &copy; Django Blog by Papijo 2019</p>
         </div>
       </div>
     </div>

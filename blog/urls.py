@@ -11,5 +11,6 @@ urlpatterns = [
     path('privacypolicy', views.privacypolicy, name = 'privacypolicy'),
     #path('blog/<tag_slug>/', views.post_list, name = 'post_list_by_tag'),
     url(r'^tags/(?P<tag_slug>[-\w]+)/$', views.post_list, name='post_list_by_tag'),
+    url(r'^authors/(?P<author_slug>[-\w]+)/$', views.post_list, name='post_list_by_author'),
     path('post/<int:pk>/', views.post_detail, name = 'post_detail')
 ]

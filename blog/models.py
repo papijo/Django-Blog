@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 
 
 class Tag(models.Model):
@@ -17,6 +18,9 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse ('blog:post_list_by_tag', args=[self.slug])
 
 
 class Author(models.Model):
@@ -32,6 +36,9 @@ class Author(models.Model):
         return format_html('<img src = "/media/%s" width="100" height="100" />' % (self.image))
     author_image.short_description = 'Image'
     author_image.allow_tags = True
+
+    def get_absolute_url(self):
+        return reverse ('blog:post_list_by_author', args=[self.slug])
 
 class Post(models.Model):
     author = models.ForeignKey(Author, on_delete = models.CASCADE, null = True)

@@ -20,10 +20,13 @@ def privacypolicy(request):
     return render(request, 'blog/staticpages/privacypolicy.html')
 
 
-def post_list(request, tag_slug=None):
+def post_list(request, tag_slug=None, author_slug = None):
 
     tag = None
     tags = Tag.objects.all()
+
+    author = None
+    authors = Author.objects.all()
 
     post = None
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -32,9 +35,13 @@ def post_list(request, tag_slug=None):
         tag = get_object_or_404(Tag, slug=tag_slug)
         posts = Post.objects.filter(tag=tag)
 
+    if author_slug:
+        author = get_object_or_404(Author, slug=author_slug)
+        posts = Post.objects.filter(author=author)
+
     
 
-    paginator = Paginator(posts, 4)
+    paginator = Paginator(posts, 1)
  
     # get the page parameter from the query string
     # if page parameter is available get() method will return empty string ''
@@ -52,7 +59,9 @@ def post_list(request, tag_slug=None):
     return render(request, 'blog/post_list.html', {
         'posts': posts,
         'tag': tag,
-        'tags': tags
+        'tags': tags,
+        'author': author,
+        'authors': authors
     })
     
 
